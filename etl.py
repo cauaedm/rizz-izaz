@@ -1,3 +1,4 @@
 import pandas as pd
 
-print(pd.read_csv('tweets.csv'))
+def export_data():
+    return  pd.read_csv('tweets.csv')

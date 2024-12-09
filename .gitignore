@@ -1,0 +1,27 @@
+# Arquivos de credenciais (NUNCA envie para o GitHub)
+*.json
+
+# Pastas geradas pelo Python
+__pycache__/
+*.pyc
+
+# Configurações específicas do ambiente local
+.env
+
+# Pastas do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Logs e caches
+*.log
+*.cache
+
+# Dependências (se estiver usando virtualenv)
+venv/
+.env/
+
+# Arquivos criados pelo Streamlit
+.streamlit/
+
+# Outros arquivos sensíveis ou desnecessários
+*.sqlite3

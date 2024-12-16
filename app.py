@@ -5,7 +5,6 @@ import plotly.express as px
 from etl import *
 from datetime import datetime
 import altair as alt
-from scraper import *
 
 # Título da página
 st.set_page_config(
@@ -57,7 +56,7 @@ with st.sidebar:
 
     if st.button("Atualizar Dados"):
         try:
-            df = scrap(selected_singer, no_of_tweets=10)
+            df = df
         except:
             df = df
 

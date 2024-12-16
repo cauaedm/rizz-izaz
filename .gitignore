@@ -1,5 +1,4 @@
 # Arquivos de credenciais (NUNCA envie para o GitHub)
-*.json
 
 # Pastas geradas pelo Python
 __pycache__/

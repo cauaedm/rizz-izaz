@@ -5,4 +5,4 @@ plotly
 altair
 pymysql
 re
-tweepy 
+tweepy==4.10.1

@@ -1,5 +1,5 @@
 # Arquivos de credenciais (NUNCA envie para o GitHub)
-
+*.ini
 # Pastas geradas pelo Python
 __pycache__/
 *.pyc

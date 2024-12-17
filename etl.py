@@ -1,6 +1,7 @@
 import pymysql
 import json
 import pandas as pd
+import re
 
 class Preprocessor:
     def __init__(self, config_file):
@@ -66,8 +67,21 @@ class Preprocessor:
             print("Erro ao inserir os dados:", e)
             self.conn.rollback()
         
-    
-    def transfrom(self, df):
-        df['singer'] = 'Duda Beat'
-
+    def transform(self, df, text_column="texto_tweet"):
+        # Função interna para limpar o texto
+        def clean_text(text):
+            text = re.sub(r"@\w+", "", text)  # Remove menções
+            text = re.sub(r"http\S+|www\S+", "", text)  # Remove URLs
+            text = re.sub(r"#\w+", "", text)  # Remove hashtags
+            text = re.sub(r"[^\w\s]", "", text)  # Remove pontuações
+            text = text.lower().strip()  # Converte para minúsculas e remove espaços extras
+            return text  # Retorna o texto limpo
+        
+        # Aplica a função de limpeza na coluna especificada
+        df[text_column] = df[text_column].apply(lambda x: clean_text(x))  # Certifique-se de passar o texto para a função
         return df
+    
+    def close(self):
+        if self.conn:
+            self.conn.close()
+            print("Conexão fechada.")

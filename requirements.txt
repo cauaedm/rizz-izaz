@@ -4,3 +4,5 @@ WordCloud
 plotly
 altair
 pymysql
+re
+tweepy 

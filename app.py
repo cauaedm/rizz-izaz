@@ -24,6 +24,7 @@ df = preprocessor.transform(df)
 new_data=None
 #Scraper
 scraper = TwitterAPI('config.ini')
+
 df_with_sentiment = pd.read_csv(r'C:\Users\otpok\UFRJ CC\rizz-izaz\df_with_sentiment.csv')
 
 # Sidebar
@@ -71,6 +72,12 @@ with st.sidebar:
 col = st.columns((1.5, 4.5, 2), gap='medium')
 
 with col[0]:
+    qtde_positivo = len(df_with_sentiment[df_with_sentiment['sentimento']==1])
+    qtde_negativo = len(df_with_sentiment[df_with_sentiment['sentimento']==-1])
+    positive_rate = qtde_positivo/(qtde_negativo+qtde_positivo)
+
+
+
     st.markdown('### Métricas')
     # Exibindo métricas de forma vertical
     st.metric(label="Qtde de tweets positivos", value=len(df_with_sentiment[df_with_sentiment['sentimento']==1]))
@@ -78,7 +85,7 @@ with col[0]:
     st.metric(label="Qtde de tweets negativos", value=len(df_with_sentiment[df_with_sentiment['sentimento']==-1]))
     # Adicionei uma margem extra para as métricas não ficarem tão próximas
     st.markdown("<br>", unsafe_allow_html=True)  # Um pequeno espaço para separação
-    st.metric(label="Mais uma métrica", value=0)
+    st.metric(label="Percentual de positivos", value=positive_rate)
     st.markdown("<br>", unsafe_allow_html=True)  # Um pequeno espaço para separação
     st.metric(label="Mais uma métrica", value=0)
     st.markdown("<br>", unsafe_allow_html=True)  # Um pequeno espaço para separação

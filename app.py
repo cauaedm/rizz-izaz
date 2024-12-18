@@ -72,46 +72,49 @@ with st.sidebar:
 col = st.columns((1.5, 4.5, 2), gap='medium')
 
 with col[0]:
-    # Calculando métricas gerais
-    qtde_positivo = len(df_with_sentiment[df_with_sentiment['sentimento'] == 1])
-    qtde_negativo = len(df_with_sentiment[df_with_sentiment['sentimento'] == -1])
-    positive_rate = qtde_positivo / (qtde_negativo + qtde_positivo)
+    try:
+        # Calculando métricas gerais
+        qtde_positivo = len(df_with_sentiment[df_with_sentiment['sentimento'] == 1])
+        qtde_negativo = len(df_with_sentiment[df_with_sentiment['sentimento'] == -1])
+        positive_rate = qtde_positivo / (qtde_negativo + qtde_positivo)
 
-    # Dividindo os tweets em dois períodos (recentes x antigos)
-    recent_tweets = df_with_sentiment[df_with_sentiment['Data de Criação'] >= (data_max - timedelta(days=1))]
-    older_tweets = df_with_sentiment[df_with_sentiment['Data de Criação'] < (data_max - timedelta(days=1))]
+        # Dividindo os tweets em dois períodos (recentes x antigos)
+        recent_tweets = df_with_sentiment[df_with_sentiment['Data de Criação'] >= (data_max - timedelta(days=1))]
+        older_tweets = df_with_sentiment[df_with_sentiment['Data de Criação'] < (data_max - timedelta(days=1))]
 
-    # Taxas de positivos nos dois períodos
-    recent_positive_rate = len(recent_tweets[recent_tweets['sentimento'] == 1]) / len(recent_tweets)
-    older_positive_rate = len(older_tweets[older_tweets['sentimento'] == 1]) / len(older_tweets)
+        # Taxas de positivos nos dois períodos
+        recent_positive_rate = len(recent_tweets[recent_tweets['sentimento'] == 1]) / len(recent_tweets)
+        older_positive_rate = len(older_tweets[older_tweets['sentimento'] == 1]) / len(older_tweets)
 
-    # Variação na taxa de positivos
-    positive_rate_delta = recent_positive_rate - older_positive_rate
+        # Variação na taxa de positivos
+        positive_rate_delta = recent_positive_rate - older_positive_rate
 
-    # Exibindo métricas
-    st.markdown('### Métricas')
-    
-    st.metric(
-        label="Qtde de tweets positivos", 
-        value=qtde_positivo
-    )
-    
-    st.markdown("<br>", unsafe_allow_html=True)
-    
-    st.metric(
-        label="Qtde de tweets negativos", 
-        value=qtde_negativo
-    )
-    
-    st.markdown("<br>", unsafe_allow_html=True)
-    
-    st.metric(
-        label="Percentual de positivos", 
-        value=f"{positive_rate:.2%}", 
-        delta=f"{positive_rate_delta:.2%}"
-    )
-    
-    st.markdown("<br>", unsafe_allow_html=True)
+        # Exibindo métricas
+        st.markdown('### Métricas')
+        
+        st.metric(
+            label="Qtde de tweets positivos", 
+            value=qtde_positivo
+        )
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        st.metric(
+            label="Qtde de tweets negativos", 
+            value=qtde_negativo
+        )
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        st.metric(
+            label="Percentual de positivos", 
+            value=f"{positive_rate:.2%}", 
+            delta=f"{positive_rate_delta:.2%}"
+        )
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+    except:
+        st.markdown("### Nenhum tweet corresponde ao filtro :(")
 
 with col[1]:
     colunas = df.columns

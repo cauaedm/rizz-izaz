@@ -24,6 +24,7 @@ df = preprocessor.transform(df)
 new_data=None
 #Scraper
 scraper = TwitterAPI('config.ini')
+df_with_sentiment = pd.read_csv(r'C:\Users\otpok\UFRJ CC\rizz-izaz\df_with_sentiment.csv')
 
 # Sidebar
 with st.sidebar:
@@ -58,7 +59,8 @@ with st.sidebar:
     )
     
     df = df[df['data_criacao'] >= data_filter]
-
+    df_with_sentiment['Data de Criação'] = pd.to_datetime(df_with_sentiment['Data de Criação']).dt.tz_localize(None)
+    df_with_sentiment = df_with_sentiment[df_with_sentiment['Data de Criação']>= data_filter]
     if st.button("Atualizar Dados"):
         preprocessor = Preprocessor('db_config.json')  # Passando o arquivo de configuração JSON
         new_data = scraper.search_tweets(search_query=selected_singer, topics=topics)
@@ -71,9 +73,9 @@ col = st.columns((1.5, 4.5, 2), gap='medium')
 with col[0]:
     st.markdown('### Métricas')
     # Exibindo métricas de forma vertical
-    st.metric(label="Qtde de tweets positivos", value=90)
+    st.metric(label="Qtde de tweets positivos", value=len(df_with_sentiment[df_with_sentiment['sentimento']==1]))
     st.markdown("<br>", unsafe_allow_html=True)
-    st.metric(label="Qtde de tweets negativos", value=72)
+    st.metric(label="Qtde de tweets negativos", value=len(df_with_sentiment[df_with_sentiment['sentimento']==-1]))
     # Adicionei uma margem extra para as métricas não ficarem tão próximas
     st.markdown("<br>", unsafe_allow_html=True)  # Um pequeno espaço para separação
     st.metric(label="Mais uma métrica", value=0)
@@ -118,7 +120,6 @@ with col[1]:
     ).generate(text)
 
 with col[2]:
-    df_with_sentiment = pd.read_csv(r'C:\Users\otpok\UFRJ CC\rizz-izaz\df_with_sentiment.csv')
     # Converter a coluna 'Data de Criação' para datetime
     df_with_sentiment['Data de Criação'] = pd.to_datetime(df['data_criacao'], errors='coerce')
 

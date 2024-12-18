@@ -36,7 +36,7 @@ with st.sidebar:
     
     key_words = ["show", "album", "musica", "lancamento", "treta"]
     topics = st.multiselect('Selecione os temas', key_words, max_selections=2)
-    
+
     df = df[df.singer == selected_singer]
     
     if len(df)<1:
@@ -91,12 +91,14 @@ with col[0]:
     st.markdown("<br>", unsafe_allow_html=True)  # Um pequeno espaço para separação
 
 with col[1]:
+    colunas = df.columns
+    colunas = st.multiselect('Selecione as Colunas', colunas, max_selections=5)
     # Exibindo a título e dados em uma área mais larga
     st.markdown('### Dados')
     
     # Exibindo o dataframe
     new_df = preprocessor.transform(df)
-    st.dataframe(new_df[['texto_tweet']], use_container_width=True, hide_index=True)  # Faz o dataframe usar toda a largura disponível
+    st.dataframe(new_df[colunas], use_container_width=True, hide_index=True)  # Faz o dataframe usar toda a largura disponível
 
     def to_xlsx(df):
         # Cria um buffer de memória

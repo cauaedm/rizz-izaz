@@ -25,7 +25,7 @@ new_data=None
 #Scraper
 scraper = TwitterAPI('config.ini')
 
-df_with_sentiment = pd.read_csv(r'C:\Users\otpok\UFRJ CC\rizz-izaz\df_with_sentiment.csv')
+df_with_sentiment = pd.read_csv(r'df_with_sentiment.csv')
 
 # Sidebar
 with st.sidebar:

@@ -114,7 +114,25 @@ with col[0]:
         
         st.markdown("<br>", unsafe_allow_html=True)
     except:
-        st.markdown("### Nenhum tweet corresponde ao filtro :(")
+        # Mensagem de erro estilizada
+        with st.container():
+            st.markdown(
+                """
+                <div style="
+                    border: 2px solid #FF4B4B; 
+                    border-radius: 10px; 
+                    padding: 20px; 
+                    background-color: #FFEDED;
+                    text-align: center;">
+                    <h3 style="color: #FF4B4B;">Ops! Algo deu errado</h3>
+                    <p style="color: #555;">
+                        Nenhum tweet corresponde ao filtro aplicado.<br>
+                        Por favor, revise os critérios de busca e tente novamente.
+                    </p>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
 with col[1]:
     colunas = df.columns

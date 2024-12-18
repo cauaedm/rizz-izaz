@@ -1,6 +1,4 @@
 # Arquivos de credenciais (NUNCA envie para o GitHub)
-*.ini
-*scraper.py
 # Pastas geradas pelo Python
 __pycache__/
 *.pyc

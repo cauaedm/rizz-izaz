@@ -18,11 +18,7 @@ st.set_page_config(
 
 # Tema do Altair
 default_theme = alt.themes.enable("default")
-# Gerando datas com repetição (algumas datas se repetem)
-datas = pd.date_range(start="2023-01-01", periods=100, freq="D")
-datas_repetidas = np.random.choice(datas, size=120, replace=True)  # 120 datas com repetição
 
-# Gerando o sentimento desbalanceado
 df = pd.read_csv(r'C:\Users\otpok\UFRJ CC\rizz-izaz\dataset_easy-twitter-search-scraper_2025-02-06_22-54-21-377.csv')
 df['sentimento'] = 0
 # Sidebar

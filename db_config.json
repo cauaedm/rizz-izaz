@@ -1,7 +1,7 @@
 {
-    "host": "autorack.proxy.rlwy.net",
+    "host": "localhost",
     "user": "root",
-    "password": "ciuAQWNZBIUOumnxgUkSnpynYKWEhLZI",
-    "port": 29737,
-    "database": "railway"
+    "password": "123456",
+    "port": 3306,
+    "database": "twitter_data"
 }

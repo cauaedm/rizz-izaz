@@ -6,3 +6,5 @@ altair
 pymysql
 tweepy
 openpyxl
+sentiment.py
+google.generativeai

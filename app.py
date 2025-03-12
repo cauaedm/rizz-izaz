@@ -22,7 +22,7 @@ default_theme = alt.themes.enable("default")
 df = pd.read_csv(r'C:\Users\otpok\UFRJ CC\rizz-izaz\dataset_easy-twitter-search-scraper_2025-02-06_22-54-21-377.csv')
 df['sentimento'] = 0
 # Sidebar
-with st.sidebar:
+with st.sidebar:       
     st.title('CCtech <> Rizz-Izaz')
     singers_lista = ["Duda Beat", "Magic Eric", "Deadcat", "Orlas"]
     selected_singer = st.selectbox('Selecione o cliente', singers_lista)

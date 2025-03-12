@@ -6,8 +6,11 @@ import numpy as np
 from sentiment import *
 import locale
 
-locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
-
+try:
+    locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
+except locale.Error:
+    locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
+    
 # Configuração da página
 st.set_page_config(
     page_title="Dashboard Visual",
